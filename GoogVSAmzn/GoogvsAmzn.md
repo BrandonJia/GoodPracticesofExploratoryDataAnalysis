@@ -22,7 +22,10 @@ perspective. Believe me: it is sparkling!
 
 The data sets are from [Glassdoor](https://www.glassdoor.com/index.htm),
 a websites highly popular among job hunters. 500 reviews about the pros
-and cons of the firms were collected in order to perform this analysis.
+and cons of the firms were collected in order to perform this analysis. Here are the datasets:
+
+    1.  [Google reviews](https://github.com/BrandonJia/GoodPracticesofExploratoryDataAnalysis/blob/master/GoogVSAmzn/500_goog.csv)
+    2.  [Amazon reviews](https://github.com/BrandonJia/GoodPracticesofExploratoryDataAnalysis/blob/master/GoogVSAmzn/500_amzn.csv)
 
 Main takeaways:
 ---------------
