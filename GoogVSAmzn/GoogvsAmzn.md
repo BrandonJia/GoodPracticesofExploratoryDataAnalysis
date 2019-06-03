@@ -45,10 +45,11 @@ Analysis:
 Good pay, benefits, growth opportunities and smart people to work with
 are major reasons.
 
-<p>
+<p align="center">
 **The Pros to Work with Amazon**
-</p>
+
 <img align="center" src="GoogvsAmzn_files/figure-markdown_strict/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
+</p>
 
 However, long working hours and hard life balance are the price you pay
 for woking with Amazon.
