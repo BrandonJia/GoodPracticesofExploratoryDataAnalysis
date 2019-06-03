@@ -46,18 +46,19 @@ Good pay, benefits, growth opportunities and smart people to work with
 are major reasons.
 
 <p align="center">
-**The Pros to Work with Amazon**
-
-<img align="center" src="GoogvsAmzn_files/figure-markdown_strict/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
+    
+   **The Pros to Work with Amazon**
+    <img align="center" src="GoogvsAmzn_files/figure-markdown_strict/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
 </p>
 
 However, long working hours and hard life balance are the price you pay
 for woking with Amazon.
 
 <p align="center">
-**The Cons to Work with Amazon**
+    
+   **The Cons to Work with Amazon**
+    <img src="GoogvsAmzn_files/figure-markdown_strict/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
 </p>
-<img src="GoogvsAmzn_files/figure-markdown_strict/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
 
 Not surprisingly, high-tech giants have very samilar benefits for their
 employees.However, poeple like free foods and great perks in Google
@@ -65,23 +66,26 @@ more. Cannot Amazon pay more attention to improving the quality of free
 foods?
 
 <p align="center">
-**The Pros to Work with Google**
+    
+   **The Pros to Work with Google**
+    <img src="GoogvsAmzn_files/figure-markdown_strict/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
 </p>
-<img src="GoogvsAmzn_files/figure-markdown_strict/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
 
 10 hours a day?! Not bad! Chinese high tech firms ask for 996!
 
 <p align="center">
-**The Cons to Work with Google**
+    
+   **The Cons to Work with Google**
+    <img src="GoogvsAmzn_files/figure-markdown_strict/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
 </p>
-<img src="GoogvsAmzn_files/figure-markdown_strict/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
 
 Who do not like friendly paced work? However, some people enjoy steep
 learning rate associated with fast paced work.
 
 <p align="center">
-**What are most common words related to fast paced in Amazon**
-</p>
+
+   **What are most common words related to fast paced in Amazon**
+
 <table class="table table-condensed">
 <thead>
 <tr>
@@ -135,6 +139,9 @@ paced work
 </tr>
 </tbody>
 </table>
+
+</p>
+
 You can work with smart people, have a lot of benefits and perks and
 fast learning rate, while you have to deal with common problems existing
 in big names, bureaucracy for example.
