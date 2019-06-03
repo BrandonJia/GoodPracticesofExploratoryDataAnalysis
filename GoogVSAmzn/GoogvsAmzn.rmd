@@ -4,10 +4,8 @@ subtitle: "Listen to what 500 reviewers on Glassdoor said"
 author: "Haojin Jia"
 date: "Jan 3, 2019"
 output:
-  html_document:
-    df_print: paged
-  pdf: default
-  pdf_document: default
+    md_document:
+      variant: markdown_github
 ---
 
 ## Introduction:
