@@ -3,9 +3,7 @@ title: "Google VS Amazon: Which Is Better To Work With?"
 subtitle: "Listen to what 500 reviewers on Glassdoor said"
 author: "Haojin Jia"
 date: "Jan 3, 2019"
-output:
-    md_document:
-      variant: markdown_github
+output: md_document
 ---
 
 ## Introduction:
