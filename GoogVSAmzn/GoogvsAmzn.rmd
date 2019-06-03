@@ -1,0 +1,448 @@
+---
+title: "Google VS Amazon: Which Is Better To Work With?"
+subtitle: "Listen to what 500 reviewers on Glassdoor said"
+author: "Haojin Jia"
+date: "Jan 3, 2019"
+output:
+  html_document:
+    df_print: paged
+  pdf: default
+  pdf_document: default
+---
+
+## Introduction:
+
+Learning what the opinions from targeting customers is always a good customer-centric attitude. Competitive analysis is always informative by conducting text mining on the feedbacks or reviews of products. To demonstrate this point, a case in point is demonstrated. Interestingly, the product in this case is high-tech giants and target users are the talents. Specifically, the question here is **what one, Amazon or Google, is better for job hunters to work with?** 
+
+<center> ![](google-v-amazon.png) </center>
+
+In this example, several text mining techniques have been used to explore insights. The efficacy of these tools are highly dependent on the situations and questions a user want to answer. This analysis is meant to demonstrate to the usage of these techniques.Feel free to use them to another your products and competitors from your customers' perspective. Believe me: it is sparkling!
+
+The data sets are from [Glassdoor](https://www.glassdoor.com/index.htm), a websites highly popular among job hunters. 500 reviews about the pros and cons of the firms were collected in order to perform this analysis. 
+
+
+## Main takeaways:
+
+-  Generally, as two largest high-tech giants around world, **Google and Amazon are pretty similar from emoployees' persepective**: they both provide good pay, benefits, learning opportunities and smart colleagues, and yet some people are bothered by common 'big name problems' like fast-paced environment.
+
+-  **Some characteristics existing differentiates the two.** Amazon has better work-life balance, while Google employees tend to satify their pay.Google are notorious for long working hours and fiercely competitive enviornment, while Amazon has more compliants about middle management.   
+  
+
+## Analysis:
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE)
+```
+
+```{r}
+# Load Packages
+suppressWarnings(
+  suppressPackageStartupMessages({
+    library(qdap)
+    library(tm)
+    library(wordcloud)
+    library(dendextend)
+    library(tidyverse)
+    library(RWeka)
+    library(plotrix)
+    library(formattable)
+  })
+)
+```
+
+```{r}
+# Load data
+amzn <- read.csv("500_amzn.csv", stringsAsFactors = FALSE)
+goog <- read.csv("500_goog.csv", stringsAsFactors = FALSE)
+```
+
+```{r, eval = FALSE}
+# Print the structure of amzn
+str(amzn)
+
+# Print the structure of goog
+str(goog)
+```
+
+```{r}
+# Create amzn_pros
+amzn_pros <- amzn$pros
+
+# Create amzn_cons
+amzn_cons <- amzn$cons
+
+
+# Create goog_pros
+goog_pros <- goog$pros
+
+# Create goog_cons
+goog_cons <- goog$cons
+```
+```{r}
+# qdap cleaning function
+qdap_clean <- function(x) {
+x <- replace_abbreviation(x)
+x <- replace_contraction(x)
+x <- replace_number(x)
+x <- replace_ordinal(x)
+x <- replace_symbol(x)
+x <- tolower(x)
+return(x)
+}
+
+# tm cleaning function
+tm_clean <- function(corpus) {
+tm_clean <- tm_map(corpus, removePunctuation)
+corpus <- tm_map(corpus, stripWhitespace)
+corpus <- tm_map(corpus, removeWords,
+c(stopwords("en"), "Google", "Amazon", "company"))
+return(corpus)
+}
+```
+
+```{r}
+# qdap_clean the text
+qdap_cleaned_amzn_pros <- qdap_clean(amzn_pros)
+
+qdap_cleaned_amzn_pros[which(is.na(qdap_cleaned_amzn_pros))] <- "NULLVALUE"
+
+# Source and create the corpus
+amzn_p_corp <- VCorpus(VectorSource(qdap_cleaned_amzn_pros))
+
+# tm_clean the corpus
+amzn_pros_corp <- tm_clean(amzn_p_corp)
+```
+
+```{r}
+# qdap_clean the text
+qdap_cleaned_amzn_cons <- qdap_clean(amzn_cons)
+
+qdap_cleaned_amzn_cons[which(is.na(qdap_cleaned_amzn_cons))] <- "NULLVALUE"
+
+# Source and create the corpus
+amzn_c_corp <- VCorpus(VectorSource(qdap_cleaned_amzn_cons))
+
+# tm_clean the corpus
+amzn_cons_corp <- tm_clean(amzn_c_corp)
+```
+
+```{r}
+# qdap_clean the text
+qdap_cleaned_goog_pros <- qdap_clean(goog_pros)
+
+qdap_cleaned_goog_pros[which(is.na(qdap_cleaned_goog_pros))] <- "NULLVALUE"
+
+# Source and create the corpus
+goog_p_corp <- VCorpus(VectorSource(qdap_cleaned_goog_pros))
+
+# tm_clean the corpus
+goog_pros_corp <- tm_clean(goog_p_corp)
+```
+
+
+```{r}
+# qdap clean the text
+qdap_cleaned_goog_cons <- qdap_clean(goog_cons)
+
+qdap_cleaned_goog_cons[which(is.na(qdap_cleaned_goog_cons))] <- "NULLVALUE"
+
+# Source and create the corpus
+goog_c_corp <- VCorpus(VectorSource(qdap_cleaned_goog_cons))
+
+# tm clean the corpus
+goog_cons_corp <- tm_clean(goog_c_corp)
+```
+
+```{r}
+tokenizer <- function(x) {
+  NGramTokenizer(x, Weka_control(min = 2, max = 2))
+}
+```
+
+
+Good pay, benefits, growth opportunities and smart people to work with are major reasons.
+
+<center> **The Pros to Work with Amazon** </center>
+
+```{r,fig.align='center'}
+# Create amzn_p_tdm
+amzn_p_tdm <- TermDocumentMatrix(amzn_pros_corp, 
+  control = list(tokenize = tokenizer))
+
+# Create amzn_p_tdm_m
+amzn_p_tdm_m <- as.matrix(amzn_p_tdm)
+
+# Create amzn_p_freq
+amzn_p_freq <- rowSums(amzn_p_tdm_m)
+
+# Plot a wordcloud using amzn_p_freq values
+wordcloud(names(amzn_p_freq
+),amzn_p_freq, max.words = 25, col = 'blue')
+```
+
+
+
+
+However, long working hours and hard life balance are the price you pay for woking with Amazon.
+
+<center> **The Cons to Work with Amazon** </center>
+```{r,fig.align='center'}
+# Create amzn_c_tdm
+amzn_c_tdm <- TermDocumentMatrix(amzn_cons_corp, control = list(tokenize = tokenizer))
+
+# Create amzn_c_tdm_m
+amzn_c_tdm_m <- as.matrix(amzn_c_tdm)
+
+# Create amzn_c_freq
+amzn_c_freq <- rowSums(amzn_c_tdm_m)
+
+# Plot a wordcloud of negative Amazon bigrams
+wordcloud(names(amzn_c_freq),amzn_c_freq,max.words = 25, color = 'red')
+```
+
+
+
+
+Not surprisingly, high-tech giants have very samilar benefits for their employees.However, poeple like free foods and great perks in Google more. Cannot Amazon pay more attention to improving the quality of free foods?   
+
+<center> **The Pros to Work with Google** </center>
+
+```{r,fig.align='center'}
+# Create goog_p_tdm
+goog_p_tdm <- TermDocumentMatrix(goog_pros_corp, 
+  control = list(tokenize = tokenizer))
+
+# Create goog_p_tdm_m
+goog_p_tdm_m <- as.matrix(goog_p_tdm)
+
+# Create goog_p_freq
+goog_p_freq <- rowSums(goog_p_tdm_m)
+
+# Plot a wordcloud using goog_p_freq values
+wordcloud(names(goog_p_freq
+),goog_p_freq, max.words = 25, col = 'blue')
+```
+
+
+
+10 hours a day?! Not bad! Chinese high tech firms ask for 996!  
+
+<center> **The Cons to Work with Google** </center>
+```{r,fig.align='center'}
+# Create amzn_c_tdm
+amzn_c_tdm <- TermDocumentMatrix(amzn_cons_corp, control = list(tokenize = tokenizer))
+
+# Create amzn_c_tdm_m
+amzn_c_tdm_m <- as.matrix(amzn_c_tdm)
+
+# Create amzn_c_freq
+amzn_c_freq <- rowSums(amzn_c_tdm_m)
+
+# Plot a wordcloud of negative amazon bigrams
+wordcloud(names(amzn_c_freq),amzn_c_freq,max.words = 25, color = 'red')
+```
+
+
+```{r, eval = FALSE}
+# Create amzn_c_tdm
+amzn_c_tdm <- TermDocumentMatrix(amzn_cons_corp, control = list(tokenize = tokenizer))
+
+# Print amzn_c_tdm to the console
+amzn_c_tdm
+
+# Create amzn_c_tdm2 by removing sparse terms 
+amzn_c_tdm2 <- removeSparseTerms(amzn_c_tdm, sparse = 0.993)
+
+# Create hc as a cluster of distance values
+hc <- hclust(dist(amzn_c_tdm2), method = 'complete')
+
+# Produce a plot of hc
+plot(hc)
+```
+
+
+
+Who do not like friendly paced work? However, some people enjoy steep learning rate associated with fast paced work.
+
+<center> **What are most common words related to fast paced in Amazon** </center>
+
+```{r,fig.align='center'}
+# Create amzn_p_tdm
+amzn_p_tdm <- TermDocumentMatrix(amzn_pros_corp, control = list(tokenize = tokenizer))
+
+# Create amzn_p_m
+amzn_p_m <- as.matrix(amzn_p_tdm)
+
+# Create amzn_p_freq
+amzn_p_freq <- rowSums(amzn_p_m)
+
+# Create term_frequency
+term_frequency <- sort(amzn_p_freq, decreasing = TRUE)
+
+# Print the 5 most common terms
+# term_frequency[1:5]
+
+# Find associations with fast paced
+li <- findAssocs(amzn_p_tdm,'fast paced',0.3)
+formattable(as.data.frame(li, keep.rownames=TRUE, col.names = 'Association with Fast-Paced'))
+```
+
+
+You can work with smart people, have a lot of benefits and perks and fast learning rate, while you have to deal with common problems existing in big names, bureaucracy for example.  
+
+```{r,fig.align='center'}
+# Create g_pros
+g_pros <- paste(goog_pros, collapse = " ")
+
+# Create g_cons
+g_cons <- paste(goog_cons, collapse = " ")
+
+# Create g_pros
+a_pros <- paste(amzn_pros, collapse = " ")
+
+# Create g_cons
+a_cons <- paste(amzn_cons, collapse = " ")
+
+# Create all_goog
+all_goog <- c(g_pros, g_cons)
+all_goog_corpus <- VCorpus(VectorSource(all_goog))
+
+# Create all_goog_corp
+all_goog_corp <- tm_clean(all_goog_corpus)
+
+# Create all_tdm
+all_tdm <- TermDocumentMatrix(all_goog_corp)
+
+# Name the columns of all_tdm
+colnames(all_tdm) <- c("Google Pros", "Google Cons")
+
+# Create all_m
+all_m <- as.matrix(all_tdm)
+
+# Build a comparison cloud
+comparison.cloud(all_m, 
+    max.words = 100, 
+    colors = c("#F44336", "#2196f3"))
+```
+
+Pretty similar to Google, that's one reason why they are called FANG.
+
+```{r,fig.align='center'}
+# Create all_goog
+all_amzn <- c(a_pros, a_cons)
+all_amzn_corpus <- VCorpus(VectorSource(all_amzn))
+
+# Create all_amzn_corp
+all_amzn_corp <- tm_clean(all_amzn_corpus)
+
+# Create all_tdm
+all_tdm <- TermDocumentMatrix(all_amzn_corp)
+
+# Name the columns of all_tdm
+colnames(all_tdm) <- c("Amazon Pros", "Amazon Cons")
+
+# Create all_m
+all_m <- as.matrix(all_tdm)
+
+# Build a comparison cloud
+comparison.cloud(all_m, 
+    max.words = 100, 
+    colors = c("#F44336", "#2196f3"))
+```
+
+
+Surprisingly, Amazon has better work-life balance, while Google employees are more likely to satify their pay.
+
+```{r}
+# Create all_pros
+all_pros <- c(g_pros, a_pros)
+all_pros_corpus <- VCorpus(VectorSource(all_pros))
+
+# Create all_pros_corp
+all_pros_corp <- tm_clean(all_pros_corpus)
+
+# Create all_tdm
+all_tdm <- TermDocumentMatrix(all_pros_corp, control = list(tokenize = tokenizer))
+
+# Name the columns of all_tdm
+colnames(all_tdm) <- c("Amazon_Pro", "Google_Pro")
+
+all_tdm_m <- as.matrix(all_tdm)
+# head(all_tdm_m,10)
+```
+
+
+
+```{r,fig.align='center'}
+# Filter to words in common and create an absolute diff column
+all_tdm_df <- as.data.frame(as.table(all_tdm_m)) %>% spread(Docs, Freq)
+
+common_words <- all_tdm_df %>% 
+  filter(
+    Amazon_Pro > 0,
+    Google_Pro > 0
+  ) %>%
+  mutate(diff = abs(Amazon_Pro - Google_Pro))
+
+# Extract top 15 common bigrams
+top5_df <- top_n(common_words, 15,wt=diff)
+
+# Create the pyramid plot
+pyramid.plot(top5_df$Amazon_Pro, top5_df$Google_Pro, 
+             labels = top5_df$Terms, gap = 12, 
+             top.labels = c("Amzn", "Pro Words", "Goog"), 
+             main = "Words in Common Regarding to Compliments", unit = NULL)
+```
+
+Google are notorious for long working hours and fiercely competitive enviornment, while Amazon has more compliants about middle management.
+
+```{r}
+# Create all_pros
+all_cons <- c(g_cons, a_cons)
+all_cons_corpus <- VCorpus(VectorSource(all_cons))
+
+# Create all_pros_corp
+all_cons_corp <- tm_clean(all_cons_corpus)
+
+# Create all_tdm
+all_tdm <- TermDocumentMatrix(all_cons_corp, control = list(tokenize = tokenizer))
+
+# Name the columns of all_tdm
+colnames(all_tdm) <- c("Amazon_Con", "Google_Con")
+
+all_tdm_m <- as.matrix(all_tdm)
+```
+
+```{r,fig.align='center'}
+all_tdm_df <- as.data.frame(as.table(all_tdm_m)) %>% spread(Docs, Freq)
+
+common_words <- all_tdm_df %>% 
+  filter(
+    Amazon_Con > 0,
+    Google_Con > 0
+  ) %>%
+  mutate(diff = abs(Amazon_Con - Google_Con))
+
+# Extract top 15 common bigrams
+top5_df <- top_n(common_words, 15,wt=diff)
+
+# Create the pyramid plot
+pyramid.plot(
+  # Amazon on the left
+  top5_df$Amazon_Con, 
+  # Google on the right         
+  top5_df$Google_Con, 
+  # Use terms for labels          
+  labels = top5_df$Terms, 
+  # Set the gap to 12          
+  gap = 12, 
+  # Set top.labels to "Amzn", "Neg words" & "Goog"          
+  top.labels = c("Amzn", "Con Words", "Goog"), 
+             
+  main = "Words in Common Regarding to Complaints", unit = NULL)
+
+```
+
+## The Code
+
+[Check this link]()
