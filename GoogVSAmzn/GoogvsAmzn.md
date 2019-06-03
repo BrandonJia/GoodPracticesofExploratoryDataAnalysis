@@ -10,7 +10,7 @@ talents. Specifically, the question here is **what one, Amazon or
 Google, is better for job hunters to work with?**
 
 <center>
-![](img src="google-v-amazon.png")
+<img src="google-v-amazon.png">
 </center>
 
 In this example, several text mining techniques have been used to
