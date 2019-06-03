@@ -10,8 +10,9 @@ talents. Specifically, the question here is **what one, Amazon or
 Google, is better for job hunters to work with?**
 
 <center>
-![](google-v-amazon.png)
+![](img src="google-v-amazon.png")
 </center>
+
 In this example, several text mining techniques have been used to
 explore insights. The efficacy of these tools are highly dependent on
 the situations and questions a user want to answer. This analysis is
@@ -160,4 +161,4 @@ enviornment, while Amazon has more compliants about middle management.
 The Code
 --------
 
-[Check this link]()
+[Check this link](https://github.com/BrandonJia/GoodPracticesofExploratoryDataAnalysis/blob/master/GoogVSAmzn/GoogvsAmzn.rmd)
