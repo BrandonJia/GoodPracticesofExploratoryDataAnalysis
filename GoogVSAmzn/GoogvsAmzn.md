@@ -4,8 +4,9 @@ Introduction:
 Learning what the opinions from targeting customers is always a good customer-centric attitude. Competitive analysis is always informative by conducting text mining on the feedbacks or reviews of products. To demonstrate this point, a case in point is demonstrated. Interestingly, the product in this case is high-tech giants and target users are the talents. Specifically, the question here is **what one, Amazon or Google, is better for job hunters to work with?**
 
 <center>
-![](google-v-amazon.png)
+![](img src="google-v-amazon.png")
 </center>
+
 In this example, several text mining techniques have been used to explore insights. The efficacy of these tools are highly dependent on the situations and questions a user want to answer. This analysis is meant to demonstrate to the usage of these techniques.Feel free to use them to another your products and competitors from your customers' perspective. Believe me: it is sparkling!
 
 The data sets are from [Glassdoor](https://www.glassdoor.com/index.htm), a websites highly popular among job hunters. 500 reviews about the pros and cons of the firms were collected in order to perform this analysis.
@@ -23,28 +24,28 @@ Analysis:
 Good pay, benefits, growth opportunities and smart people to work with are major reasons.
 
 <center>
-**The Pros to Work with Amazon**
+    **The Pros to Work with Amazon**
 </center>
 <img src="GoogvsAmzn_files/figure-markdown_github/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
 
 However, long working hours and hard life balance are the price you pay for woking with Amazon.
 
 <center>
-**The Cons to Work with Amazon**
+    **The Cons to Work with Amazon**
 </center>
 <img src="GoogvsAmzn_files/figure-markdown_github/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
 
 Not surprisingly, high-tech giants have very samilar benefits for their employees.However, poeple like free foods and great perks in Google more. Cannot Amazon pay more attention to improving the quality of free foods?
 
 <center>
-**The Pros to Work with Google**
+    **The Pros to Work with Google**
 </center>
 <img src="GoogvsAmzn_files/figure-markdown_github/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
 
 10 hours a day?! Not bad! Chinese high tech firms ask for 996!
 
 <center>
-**The Cons to Work with Google**
+    **The Cons to Work with Google**
 </center>
 <img src="GoogvsAmzn_files/figure-markdown_github/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
 
