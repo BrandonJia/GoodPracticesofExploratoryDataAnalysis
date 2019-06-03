@@ -45,17 +45,17 @@ Analysis:
 Good pay, benefits, growth opportunities and smart people to work with
 are major reasons.
 
-<center>
+<p>
 **The Pros to Work with Amazon**
-</center>
-<img src="GoogvsAmzn_files/figure-markdown_strict/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
+</p>
+<img align="center" src="GoogvsAmzn_files/figure-markdown_strict/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
 
 However, long working hours and hard life balance are the price you pay
 for woking with Amazon.
 
-<center>
+<p align="center">
 **The Cons to Work with Amazon**
-</center>
+</p>
 <img src="GoogvsAmzn_files/figure-markdown_strict/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
 
 Not surprisingly, high-tech giants have very samilar benefits for their
@@ -63,24 +63,24 @@ employees.However, poeple like free foods and great perks in Google
 more. Cannot Amazon pay more attention to improving the quality of free
 foods?
 
-<center>
+<p align="center">
 **The Pros to Work with Google**
-</center>
+</p>
 <img src="GoogvsAmzn_files/figure-markdown_strict/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
 
 10 hours a day?! Not bad! Chinese high tech firms ask for 996!
 
-<center>
+<p align="center">
 **The Cons to Work with Google**
-</center>
+</p>
 <img src="GoogvsAmzn_files/figure-markdown_strict/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
 
 Who do not like friendly paced work? However, some people enjoy steep
 learning rate associated with fast paced work.
 
-<center>
+<p align="center">
 **What are most common words related to fast paced in Amazon**
-</center>
+</p>
 <table class="table table-condensed">
 <thead>
 <tr>
