@@ -16,6 +16,6 @@ When finishing setting, click 'Draw!' and your word cloud is generated.
 
 
 
-![Capture](Capture.JPG)
+![Capture](C:\Users\H.J. Jia\Documents\wordcloud\Capture.JPG)
 
-Note: if you are interested in taking a look at the code, check this [repo](https://github.com/BrandonJia/GoodPracticesofExploratoryDataAnalysis/blob/master/wordcloudAppUsingRshiny/app.R) on my GitHub
+Note: if you are interested in taking a look at the code, check this [repo]() on my GitHub

@@ -36,31 +36,30 @@ create_wordcloud <- function(data,
                              num_words = 100, 
                              background = "white"){
   
-  qdap_cleaned_amzn_pros <- qdap_clean(data)
+  qdap_cleaned_data <- qdap_clean(data)
   
-  qdap_cleaned_amzn_pros[which(is.na(qdap_cleaned_amzn_pros))] <- "NULLVALUE"
+  qdap_cleaned_data[which(is.na(qdap_cleaned_data))] <- "NULLVALUE"
   # Source and create the corpus
-  amzn_p_corp <- VCorpus(VectorSource(qdap_cleaned_amzn_pros))
+  p_corp <- VCorpus(VectorSource(qdap_cleaned_data))
   
   # tm_clean the corpus
-  amzn_pros_corp <- tm_clean(amzn_p_corp)
+  tm_corp <- tm_clean(p_corp)
   
   
-  amzn_p_tdm <- TermDocumentMatrix(amzn_pros_corp, 
-                                   control = list(tokenize = tokenizer))
+  p_tdm <- TermDocumentMatrix(tm_corp, 
+                              control = list(tokenize = tokenizer))
   
-  # Create amzn_p_tdm_m
-  amzn_p_tdm_m <- as.matrix(amzn_p_tdm)
+  # Create p_tdm_m
+  p_tdm_m <- as.matrix(p_tdm)
   
-  # Create amzn_p_freq
-  amzn_p_freq <- rowSums(amzn_p_tdm_m)
+  # Create p_freq
+  p_freq <- rowSums(p_tdm_m)
   
-  v <- sort(amzn_p_freq,decreasing=TRUE)
+  v <- sort(p_freq,decreasing=TRUE)
   
   d <- data.frame(word = names(v),freq=v)
   d <- d %>% slice(1:num_words)
   wordcloud2(d, backgroundColor = background)
-  
 }
 
 ui <- fluidPage(
