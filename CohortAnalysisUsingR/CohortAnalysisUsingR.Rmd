@@ -1,5 +1,5 @@
 ---
-title: "CohortAnalysisUsingR"
+title: "Cohort Analysis Using R"
 author: "Haojin Jia"
 date: "June 4, 2019"
 output: md_document
@@ -74,7 +74,7 @@ formattable(pivot_table)
 ```
 
 ```{r}
-pivot_data %>% ggplot(aes(x = CohortIndex, y = CohortMonth, fill = count)) + geom_tile() + labs(label = 'The Retention Rate Every Month of 13 cohorts over 13 months' ) +
+pivot_data %>% ggplot(aes(x = CohortIndex, y = CohortMonth, fill = count)) + geom_tile() + ggtitle(label = 'The Retention Rate Every Month' ) +
   xlab('Cohort Index') +
   ylab('Cohort Month')
 ```
@@ -96,7 +96,7 @@ for (i in 2:14){
   pivot_table[,i] <- pivot_table[,i] / total * 100
 }
 
-pivot_data %>% ggplot(aes(x = CohortIndex, y = CohortMonth, fill = Mean)) + geom_tile() + labs(label = 'The Quantity of Products Per Transaction Every Month of 13 cohorts over 13 months' ) +
+pivot_data %>% ggplot(aes(x = CohortIndex, y = CohortMonth, fill = Mean)) + geom_tile() + ggtitle(label = 'The Quantity of Products Per Transaction On Average' ) +
   xlab('Cohort Index') +
   ylab('Cohort Month')
 ```
