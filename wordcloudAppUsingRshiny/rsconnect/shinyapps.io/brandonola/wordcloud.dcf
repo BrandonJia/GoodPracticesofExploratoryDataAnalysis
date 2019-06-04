@@ -1,0 +1,12 @@
+name: wordcloud
+title: wordcloud
+username:
+account: brandonola
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 964156
+bundleId: 2128883
+url: https://brandonola.shinyapps.io/wordcloud/
+when: 1559635585.324
+asMultiple: FALSE
+asStatic: FALSE
