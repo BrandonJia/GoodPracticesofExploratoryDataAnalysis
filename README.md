@@ -1,2 +1,2 @@
 # GoodPracticesofExploratoryDataAnalysis
-This repo includes all the best practices regarding to exploratory data analysis during my career
+This repo includes several good practices regarding to exploratory data analysis.
