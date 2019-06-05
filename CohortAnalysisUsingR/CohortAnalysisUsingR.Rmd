@@ -1,0 +1,118 @@
+---
+title: "Cohort Analysis Using R"
+author: "Haojin Jia"
+date: "June 4, 2019"
+output:
+  md_document:
+    variant: markdown_github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE)
+```
+
+```{r}
+# Load Packages
+suppressWarnings(
+  suppressPackageStartupMessages({
+    library(tidyverse)
+    library(ggplot2)
+    library(lubridate)
+    library(dplyr)
+    library(zoo)
+    library(tidyr)
+    library(formattable)
+  })
+)
+```
+
+```{r}
+data <- read.csv('online.csv')
+```
+
+```{r}
+data$InvoiceDate <- as.POSIXct(data$InvoiceDate,
+                               format = "%Y-%m-%d %H:%M:%S")
+
+data$InvoiceMonth <- format(data$InvoiceDate, format = "%Y-%m")
+
+
+data1 <- data %>% group_by(CustomerID) %>% mutate(CohortMonth = min(InvoiceMonth))
+
+data1$InvoiceMonth <- as.yearmon(data1$InvoiceMonth)
+
+data1$CohortMonth <- as.yearmon(data1$CohortMonth)
+
+
+months <- function(date1, date2){
+  y <- year(date1) - year(date2) 
+  m <- month(date1) - month(date2)
+  return(12 * y + m + 1)
+}
+
+
+data1 <- data1 %>% mutate(CohortIndex =  months(InvoiceDate, CohortMonth))
+```
+
+
+
+
+
+```{r}
+pivot_data <- data1 %>% group_by(CohortMonth, CohortIndex) %>% 
+  summarise(count = n_distinct(CustomerID))
+
+pivot_table <- pivot_data %>% spread(CohortIndex, count)
+formattable(pivot_table)
+```
+## Retention Rate
+```{r}
+total <- pivot_table[2]
+
+for (i in 2:14){
+  pivot_table[,i] <- pivot_table[,i] / total * 100
+}
+formattable(pivot_table)
+```
+
+```{r}
+pivot_data %>% arrange(CohortMonth) %>% 
+  ggplot(aes(x = CohortIndex, 
+             y = factor(CohortMonth,levels = rev(levels(factor(pivot_data$CohortMonth)))), 
+             fill = count)) + 
+  geom_tile() + 
+  ggtitle(label = 'The Retention Rate Every Month' ) +
+  xlab('Cohort Index') +
+  ylab('Cohort Month')
+```
+
+## Analyze the quantity of products on average every transaction has 
+```{r}
+pivot_data <- data1 %>% group_by(CohortMonth, CohortIndex) %>% 
+  summarise(Mean = mean(Quantity))
+
+pivot_table <- pivot_data %>% spread(CohortIndex, Mean)
+
+formattable(pivot_table)
+```
+
+```{r}
+total <- pivot_table[2]
+
+for (i in 2:14){
+  pivot_table[,i] <- pivot_table[,i] / total * 100
+}
+
+pivot_data %>% ggplot(aes(x = CohortIndex, 
+                          y = factor(CohortMonth,
+                                     levels = rev(levels(factor(pivot_data$CohortMonth)))), 
+                          fill = Mean)) + 
+  geom_tile() + 
+  ggtitle(label = 'The Quantity of Products Per Transaction On Average' ) +
+  xlab('Cohort Index') +
+  ylab('Cohort Month')
+```
+
+**Data Source: **
+
+-  [Online Retail Data Set](https://archive.ics.uci.edu/ml/datasets/online+retail) from UCI Machine Learning Repository. 
