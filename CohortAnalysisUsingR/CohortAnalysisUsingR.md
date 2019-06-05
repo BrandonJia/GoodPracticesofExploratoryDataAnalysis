@@ -1880,6 +1880,5 @@ NA
 ![](https://github.com/BrandonJia/GoodPracticesofExploratoryDataAnalysis/blob/master/CohortAnalysisUsingR/CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 
-**Data Source: **
-
+**Data Source:**
 -   [Online Retail Data Set](https://archive.ics.uci.edu/ml/datasets/online+retail) from UCI Machine Learning Repository.
