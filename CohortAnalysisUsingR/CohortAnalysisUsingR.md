@@ -620,8 +620,11 @@ NA
 </tr>
 </tbody>
 </table>
+
+
 Retention Rate
 --------------
+
 
 <table class="table table-condensed">
 <thead>
@@ -1245,7 +1248,8 @@ NA
 </tr>
 </tbody>
 </table>
-![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
+![](https://github.com/BrandonJia/GoodPracticesofExploratoryDataAnalysis/blob/master/CohortAnalysisUsingR/CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 Analyze the quantity of products on average every transaction has
 -----------------------------------------------------------------
@@ -1872,7 +1876,9 @@ NA
 </tr>
 </tbody>
 </table>
-![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-8-1.png)
+
+![](https://github.com/BrandonJia/GoodPracticesofExploratoryDataAnalysis/blob/master/CohortAnalysisUsingR/CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-8-1.png)
+
 
 **Data Source: **
 
