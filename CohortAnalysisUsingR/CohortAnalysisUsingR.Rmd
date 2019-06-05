@@ -2,7 +2,9 @@
 title: "Cohort Analysis Using R"
 author: "Haojin Jia"
 date: "June 4, 2019"
-output: md_document
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -54,7 +56,7 @@ data1 <- data1 %>% mutate(CohortIndex =  months(InvoiceDate, CohortMonth))
 
 
 
-## Acquisition Size
+
 
 ```{r}
 pivot_data <- data1 %>% group_by(CohortMonth, CohortIndex) %>% 
@@ -74,7 +76,12 @@ formattable(pivot_table)
 ```
 
 ```{r}
-pivot_data %>% ggplot(aes(x = CohortIndex, y = CohortMonth, fill = count)) + geom_tile() + ggtitle(label = 'The Retention Rate Every Month' ) +
+pivot_data %>% arrange(CohortMonth) %>% 
+  ggplot(aes(x = CohortIndex, 
+             y = factor(CohortMonth,levels = rev(levels(factor(pivot_data$CohortMonth)))), 
+             fill = count)) + 
+  geom_tile() + 
+  ggtitle(label = 'The Retention Rate Every Month' ) +
   xlab('Cohort Index') +
   ylab('Cohort Month')
 ```
@@ -96,8 +103,16 @@ for (i in 2:14){
   pivot_table[,i] <- pivot_table[,i] / total * 100
 }
 
-pivot_data %>% ggplot(aes(x = CohortIndex, y = CohortMonth, fill = Mean)) + geom_tile() + ggtitle(label = 'The Quantity of Products Per Transaction On Average' ) +
+pivot_data %>% ggplot(aes(x = CohortIndex, 
+                          y = factor(CohortMonth,
+                                     levels = rev(levels(factor(pivot_data$CohortMonth)))), 
+                          fill = Mean)) + 
+  geom_tile() + 
+  ggtitle(label = 'The Quantity of Products Per Transaction On Average' ) +
   xlab('Cohort Index') +
   ylab('Cohort Month')
 ```
 
+**Data Source: **
+
+-  [Online Retail Data Set](https://archive.ics.uci.edu/ml/datasets/online+retail) from UCI Machine Learning Repository. 
