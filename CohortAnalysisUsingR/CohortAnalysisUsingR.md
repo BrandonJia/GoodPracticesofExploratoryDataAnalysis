@@ -620,11 +620,8 @@ NA
 </tr>
 </tbody>
 </table>
-
-
 Retention Rate
 --------------
-
 
 <table class="table table-condensed">
 <thead>
@@ -1248,8 +1245,7 @@ NA
 </tr>
 </tbody>
 </table>
-
-![](https://github.com/BrandonJia/GoodPracticesofExploratoryDataAnalysis/blob/master/CohortAnalysisUsingR/CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 Analyze the quantity of products on average every transaction has
 -----------------------------------------------------------------
@@ -1876,9 +1872,8 @@ NA
 </tr>
 </tbody>
 </table>
+![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
-![](https://github.com/BrandonJia/GoodPracticesofExploratoryDataAnalysis/blob/master/CohortAnalysisUsingR/CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-8-1.png)
+**Data Source: **
 
-
-**Data Source:**
 -   [Online Retail Data Set](https://archive.ics.uci.edu/ml/datasets/online+retail) from UCI Machine Learning Repository.

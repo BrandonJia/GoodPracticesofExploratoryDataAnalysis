@@ -3,8 +3,8 @@ title: "Cohort Analysis Using R"
 author: "Haojin Jia"
 date: "June 4, 2019"
 output:
-  md_document:
-    variant: markdown_github
+  html_document
+
 ---
 
 ```{r setup, include=FALSE}
@@ -22,6 +22,7 @@ suppressWarnings(
     library(zoo)
     library(tidyr)
     library(formattable)
+    library(plotly)
   })
 )
 ```
@@ -57,15 +58,27 @@ data1 <- data1 %>% mutate(CohortIndex =  months(InvoiceDate, CohortMonth))
 
 
 
+## Acquisition Size
+
+As starter, let us define the variables. CohortMonth is the month when a group of users registered. For example, Dec 2010 is the month that this batch of customers registered. CohortIndex is the number of month since they registered. For example, 2 is the second month after they registered. 
+
+With these definitions, obviously, the CohortIndex "1" represents the size of acquisition.
 
 ```{r}
 pivot_data <- data1 %>% group_by(CohortMonth, CohortIndex) %>% 
-  summarise(count = n_distinct(CustomerID))
+  summarise(Count = n_distinct(CustomerID))
 
-pivot_table <- pivot_data %>% spread(CohortIndex, count)
+pivot_table <- pivot_data %>% spread(CohortIndex, Count)
 formattable(pivot_table)
 ```
-## Retention Rate
+```{r}
+pivot_data %>% filter(CohortIndex == 1) %>% ggplot(aes(x = as.Date(CohortMonth), y = Count)) + geom_line()
+```
+
+From this visual, the acquisition size decreased dramatically from Dec 2010. It seems that the ability to acquire new customers is decreasing dramatically. More information is needed about competitors and industry to conduct further analysis.
+
+## Retention Rate (%)
+Let's delve into retention rate.
 ```{r}
 total <- pivot_table[2]
 
@@ -76,15 +89,34 @@ formattable(pivot_table)
 ```
 
 ```{r}
-pivot_data %>% arrange(CohortMonth) %>% 
-  ggplot(aes(x = CohortIndex, 
+pivot_data %>% 
+  group_by(CohortMonth) %>% 
+  mutate(AcquisitionSize = max(Count), 
+         RetentionRate = Count / AcquisitionSize) %>%
+  ggplot(aes(x = factor(CohortIndex), 
              y = factor(CohortMonth,levels = rev(levels(factor(pivot_data$CohortMonth)))), 
-             fill = count)) + 
+             fill = RetentionRate)) + 
   geom_tile() + 
+  scale_fill_gradientn(colours = topo.colors(50)) +
   ggtitle(label = 'The Retention Rate Every Month' ) +
   xlab('Cohort Index') +
   ylab('Cohort Month')
 ```
+
+## Retention Rate change of every cohort
+```{r}
+p <- pivot_data %>% 
+     mutate(RetentionRate = Count / max(Count) * 100) %>%
+     ggplot(aes(x = CohortIndex, 
+                y = RetentionRate, 
+                colour=factor(CohortMonth))) + 
+     geom_line()
+
+ggplotly(p)
+```
+Red Flag: all cohorts decreased at the end of their cohort Index, which is Dec 2011. One should be warned to check what happen in that month. Ideally, as time goes, the retention rate should flatten out, which indicates customer adherence to this retailer, otherwise they should learn what is the sweet point the retailer provides for their customers.
+
+Note: This graph is interactive: feel free to double click specific cohort on legend to conceal other cohorts. With this reason, md file may not be able to see this effect. 
 
 ## Analyze the quantity of products on average every transaction has 
 ```{r}
@@ -108,6 +140,7 @@ pivot_data %>% ggplot(aes(x = CohortIndex,
                                      levels = rev(levels(factor(pivot_data$CohortMonth)))), 
                           fill = Mean)) + 
   geom_tile() + 
+  scale_fill_gradientn(colours = terrain.colors(10)) + 
   ggtitle(label = 'The Quantity of Products Per Transaction On Average' ) +
   xlab('Cohort Index') +
   ylab('Cohort Month')
