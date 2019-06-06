@@ -632,7 +632,8 @@ NA
 </tr>
 </tbody>
 </table>
-![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-5-1.png)
+
+ ![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 From this visual, the acquisition size decreased dramatically from Dec 2010. It seems that the ability to acquire new customers is decreasing dramatically. More information is needed about competitors and industry to conduct further analysis.
 
@@ -1263,12 +1264,16 @@ NA
 </tr>
 </tbody>
 </table>
-![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-7-1.png)
+
+ ![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 Retention Rate change of every cohort
 -------------------------------------
 
-![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-8-1.png) Red Flag: all cohorts decreased at the end of their cohort Index, which is Dec 2011. One should be warned to check what happen in that month. Ideally, as time goes, the retention rate should flatten out, which indicates customer adherence to this retailer, otherwise they should learn what is the sweet point the retailer provides for their customers.
+ ![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-8-1.png) Red Flag: all cohorts decreased at the end of their cohort 
+
+
+Index, which is Dec 2011. One should be warned to check what happen in that month. Ideally, as time goes, the retention rate should flatten out, which indicates customer adherence to this retailer, otherwise they should learn what is the sweet point the retailer provides for their customers.
 
 Note: This graph is interactive: feel free to double click specific cohort on legend to conceal other cohorts. With this reason, md file may not be able to see this effect.
 
@@ -1897,7 +1902,8 @@ NA
 </tr>
 </tbody>
 </table>
-![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-10-1.png)
+
+  ![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 **Data Source: **
 
