@@ -1,3 +1,15 @@
+Cohort Analysis Using R
+================
+Haojin Jia
+June 4, 2019
+
+Acquisition Size
+----------------
+
+As starter, let us define the variables. CohortMonth is the month when a group of users registered. For example, Dec 2010 is the month that this batch of customers registered. CohortIndex is the number of month since they registered. For example, 2 is the second month after they registered.
+
+With these definitions, obviously, the CohortIndex "1" represents the size of acquisition.
+
 <table class="table table-condensed">
 <thead>
 <tr>
@@ -620,8 +632,14 @@ NA
 </tr>
 </tbody>
 </table>
-Retention Rate
---------------
+![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-5-1.png)
+
+From this visual, the acquisition size decreased dramatically from Dec 2010. It seems that the ability to acquire new customers is decreasing dramatically. More information is needed about competitors and industry to conduct further analysis.
+
+Retention Rate (%)
+------------------
+
+Let's delve into retention rate.
 
 <table class="table table-condensed">
 <thead>
@@ -1245,7 +1263,14 @@ NA
 </tr>
 </tbody>
 </table>
-![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-7-1.png)
+
+Retention Rate change of every cohort
+-------------------------------------
+
+![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-8-1.png) Red Flag: all cohorts decreased at the end of their cohort Index, which is Dec 2011. One should be warned to check what happen in that month. Ideally, as time goes, the retention rate should flatten out, which indicates customer adherence to this retailer, otherwise they should learn what is the sweet point the retailer provides for their customers.
+
+Note: This graph is interactive: feel free to double click specific cohort on legend to conceal other cohorts. With this reason, md file may not be able to see this effect.
 
 Analyze the quantity of products on average every transaction has
 -----------------------------------------------------------------
@@ -1872,7 +1897,7 @@ NA
 </tr>
 </tbody>
 </table>
-![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](CohortAnalysisUsingR_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 **Data Source: **
 

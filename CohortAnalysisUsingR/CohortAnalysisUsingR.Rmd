@@ -2,8 +2,7 @@
 title: "Cohort Analysis Using R"
 author: "Haojin Jia"
 date: "June 4, 2019"
-output:
-  html_document
+output: github_document
 
 ---
 
@@ -111,8 +110,8 @@ p <- pivot_data %>%
                 y = RetentionRate, 
                 colour=factor(CohortMonth))) + 
      geom_line()
-
-ggplotly(p)
+p
+## ggplotly(p)
 ```
 Red Flag: all cohorts decreased at the end of their cohort Index, which is Dec 2011. One should be warned to check what happen in that month. Ideally, as time goes, the retention rate should flatten out, which indicates customer adherence to this retailer, otherwise they should learn what is the sweet point the retailer provides for their customers.
 
